@@ -1,6 +1,7 @@
 import os
 import tarfile
 from six.moves import urllib
+import pandas as pd
 
 DOWNLOAD_ROOT = "https://raw.githubusercontent.com/agerson/handson-ml/master/"
 HOUSING_PATH = "datasets/housing"
