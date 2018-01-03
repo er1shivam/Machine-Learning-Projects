@@ -2,6 +2,7 @@ import os
 import tarfile
 from six.moves import urllib
 import pandas as pd
+import numpy as np
 
 DOWNLOAD_ROOT = "https://raw.githubusercontent.com/agerson/handson-ml/master/"
 HOUSING_PATH = "datasets/housing"
@@ -29,3 +30,16 @@ def load_housing_data(housing_path =HOUSING_PATH):
     '''
     csv_path = os.path.join(housing_path, "housing.csv")
     return pd.read_csv(csv_path)
+
+
+def split_train_test(data, test_ratio):
+    #
+    # Function to create a Test Set
+    #
+
+    shuffled_indices = np.random.permutation(len(data))
+    test_set_size = int(len(data) * test_ratio)
+    test_indices = shuffled_indices[:test_set_size]
+    train_indices= shuffled_indices[test_set_size:]
+    
+    return data.iloc[train_indices], data.iloc[test_indices]
